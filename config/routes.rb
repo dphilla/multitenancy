@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  root 'items#index'
+  root 'stores#index'
+
+  namespace :stores, path: ':store', only: [:index] do
+    resources :items, only: [:index]
+  end
 
   resources :items, only: [:index, :show]
   resources :orders, only: [:index, :show]
